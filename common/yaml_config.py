@@ -1,11 +1,12 @@
 # @Time: 2023/8/18 14:48
 # @Author: LCC
 import yaml
+from common.tools import get_project_path,sep
 
 
 class GetConf:
     def __init__(self):
-        with open("../config/environment.yaml", "r", encoding="utf-8") as env_file:
+        with open(get_project_path()+sep(["config", "environment.yaml"],  add_sep_before=True), "r", encoding="utf-8") as env_file:
             self.env = yaml.load(env_file, Loader=yaml.FullLoader)
 
     def get_username_password(self):
