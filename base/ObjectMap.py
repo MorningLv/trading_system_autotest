@@ -1,7 +1,9 @@
 # @Time: 2023/8/19 11:37
 # @Author: LCC
 import time
-from selenium.common.exceptions import ElementNotVisibleException, WebDriverException, NoSuchElementException
+from selenium.common.exceptions import ElementNotVisibleException, WebDriverException, NoSuchElementException, \
+    StaleElementReferenceException
+from selenium.webdriver.common.keys import Keys
 from common.yaml_config import GetConf
 
 
@@ -108,3 +110,47 @@ class ObjectMap:
             return True
         except NoSuchElementException:
             return False
+
+    def element_fill_value(self, driver, locate_type, locator_expression, fill_value, timeout=10):
+
+        element = self.element_appear(driver, locate_type, locator_expression, timeout)
+        try:
+            element.clear()
+        except StaleElementReferenceException:
+            self.wait_for_ready_state_complete(driver)
+            time.sleep(0.06)
+            element = self.element_appear(driver, locate_type, locator_expression, timeout)
+            try:
+                element.clear()
+            except Exception:
+                pass
+        except Exception:
+            pass
+        if type(fill_value) is int or type(fill_value) is float:
+            fill_value = str(fill_value)
+        try:
+            if not fill_value.endswith("\n"):
+                element.send_keys(fill_value)
+                self.wait_for_ready_state_complete(driver)
+            else:
+                fill_value = fill_value[:-1]
+                element.send_keys(fill_value)
+                element.send_keys(Keys.ENTER)
+                self.wait_for_ready_state_complete(driver)
+        except StaleElementReferenceException:
+            self.wait_for_ready_state_complete(driver)
+            time.sleep(0.06)
+            element = self.element_appear(driver, locate_type, locator_expression, timeout)
+            element.clear()
+            if not fill_value.endswith("\n"):
+                element.send_keys(fill_value)
+                self.wait_for_ready_state_complete(driver)
+            else:
+                fill_value = fill_value[:-1]
+                element.send_keys(fill_value)
+                element.send_keys(Keys.ENTER)
+                self.wait_for_ready_state_complete(driver)
+        except Exception:
+            raise Exception("元素填值失败")
+
+        return True
