@@ -154,3 +154,27 @@ class ObjectMap:
             raise Exception("元素填值失败")
 
         return True
+
+    def element_click(self, driver, locate_type, locator_expression, locate_type_disappear=None,
+                      locator_expression_disappear=None,
+                      locate_type_appear=None, locator_expression_appear=None, timeout=30):
+
+        element = self.element_appear(driver, locate_type, locator_expression, timeout)
+        try:
+            element.click()
+        except StaleElementReferenceException:
+            self.wait_for_ready_state_complete(driver)
+            time.sleep(0.06)
+            element = self.element_appear(driver, locate_type, locator_expression, timeout)
+            element.click()
+        except Exception as e:
+            print("元素不可点击", e)
+            return False
+
+        try:
+            self.element_appear(driver, locate_type_appear, locator_expression_appear)
+            self.element_disappear(driver, locate_type_disappear, locator_expression_disappear)
+        except Exception as e:
+            print("等待元素消失或出现失败", e)
+            return False
+        return True
