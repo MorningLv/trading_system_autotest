@@ -2,9 +2,12 @@
 # @Author: LCC
 import time
 from selenium.common.exceptions import ElementNotVisibleException, WebDriverException
+from common.yaml_config import GetConf
 
 
 class ObjectMap:
+    url = GetConf().get_url()
+
     def element_get(self, driver, locate_type, locator_expression, timeout=10, must_visible=False):
         start_ms = time.time() * 1000  # 获取当前时间，毫秒
         stop_ms = start_ms + (timeout * 1000)
@@ -85,3 +88,16 @@ class ObjectMap:
             raise ElementNotVisibleException("元素没有出现，定位方式：" + locate_type + ",定位表达式：" + locator_expression)
         else:
             pass
+
+    def element_to_url(self, driver, url, locate_type_disappear=None, locator_expression_disappear=None,
+                       locate_type_appear=None, locator_expression_appear=None):
+        try:
+            driver.get(self.url + url)
+            time.sleep(3)
+            self.wait_for_ready_state_complete(driver)
+            self.element_disappear(driver, locate_type_disappear, locator_expression_disappear)
+            self.element_appear(driver, locate_type_appear, locator_expression_appear)
+        except Exception as e:
+            print("跳转地址出现异常，异常原因：%s" % e)
+            return False
+        return True
