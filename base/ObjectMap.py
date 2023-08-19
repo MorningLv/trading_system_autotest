@@ -1,7 +1,7 @@
 # @Time: 2023/8/19 11:37
 # @Author: LCC
 import time
-from selenium.common.exceptions import ElementNotVisibleException, WebDriverException
+from selenium.common.exceptions import ElementNotVisibleException, WebDriverException, NoSuchElementException
 from common.yaml_config import GetConf
 
 
@@ -101,3 +101,10 @@ class ObjectMap:
             print("跳转地址出现异常，异常原因：%s" % e)
             return False
         return True
+
+    def element_is_display(self, driver, locate_type, locator_expression):
+        try:
+            element = driver.find_element(by=locate_type, value=locator_expression)
+            return True
+        except NoSuchElementException:
+            return False
