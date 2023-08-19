@@ -44,4 +44,44 @@ class ObjectMap:
                 if now_ms > stop_ms:
                     break
                 time.sleep(0.1)
-        raise Exception("页面云荣盛在%s秒后仍然没有完全加载完成" % timeout)
+        raise Exception("页面在%s秒后仍然没有完全加载完成" % timeout)
+
+    def element_disappear(self, driver, locate_type, locator_expression, timeout=30):
+        # 等待页面元素消失
+        if locate_type:
+            start_ms = time.time() * 1000
+            stop_ms = start_ms + (timeout * 1000)
+            for i in range(int(timeout * 10)):
+                try:
+                    element = driver.find_element(by=locate_type, value=locator_expression)
+                    if element.is_displayed():
+                        now_ms = time.time() * 1000
+                        if now_ms > stop_ms:
+                            break
+                        time.time(0.1)
+                except Exception:
+                    return True
+            raise Exception("元素没有消失，定位方式：" + locate_type + ",定位表达式：" + locator_expression)
+        else:
+            pass
+
+    def element_appear(self, driver, locate_type, locator_expression, timeout=30):
+        # 等待页面元素出现
+        if locate_type:
+            start_ms = time.time() * 1000
+            stop_ms = start_ms + (timeout * 1000)
+            for i in range(int(timeout * 10)):
+                try:
+                    element = driver.find_element(by=locate_type, value=locator_expression)
+                    if element.is_displayed():
+                        return element
+                    else:
+                        raise Exception()
+                except Exception:
+                    now_ms = time.time() * 1000
+                    if now_ms > stop_ms:
+                        break
+                    time.time(0.1)
+            raise ElementNotVisibleException("元素没有出现，定位方式：" + locate_type + ",定位表达式：" + locator_expression)
+        else:
+            pass
