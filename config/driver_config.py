@@ -18,7 +18,7 @@ class DriverConfig:
         # 允许忽略localhost上的TLS/SSL错误
         options.add_argument("--allow-insecure-localhost")
         # 设置为无痕模式
-        options.add_argument("--incogito")
+        options.add_argument("--incognito")
         # 设置无头模式
         # options.add_argument("--headless")
         # 解决卡顿

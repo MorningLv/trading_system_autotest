@@ -9,6 +9,7 @@
 .idea/**/shelf
 .idea/**/Project.xml
 .idea/vcs.xml
+.idea/misc.xml
 
 # AWS User-specific
 .idea/**/aws.xml

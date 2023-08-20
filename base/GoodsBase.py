@@ -3,7 +3,7 @@
 
 class GoodsBase:
     def goods_title(self):
-        return "//form[@class='el-form']//textarea[@placeholder='请输入商品名称']"
+        return "//form[@class='el-form']//textarea[@placeholder='请输入商品标题']"
 
     def goods_detail(self):
         return "//form[@class='el-form']//textarea[@placeholder='请输入商品详情']"

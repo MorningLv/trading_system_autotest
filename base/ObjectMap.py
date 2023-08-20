@@ -63,7 +63,7 @@ class ObjectMap:
                         now_ms = time.time() * 1000
                         if now_ms > stop_ms:
                             break
-                        time.time(0.1)
+                        time.sleep(0.1)
                 except Exception:
                     return True
             raise Exception("元素没有消失，定位方式：" + locate_type + ",定位表达式：" + locator_expression)
@@ -86,7 +86,7 @@ class ObjectMap:
                     now_ms = time.time() * 1000
                     if now_ms > stop_ms:
                         break
-                    time.time(0.1)
+                    time.sleep(0.1)
             raise ElementNotVisibleException("元素没有出现，定位方式：" + locate_type + ",定位表达式：" + locator_expression)
         else:
             pass
@@ -164,7 +164,7 @@ class ObjectMap:
             element.click()
         except StaleElementReferenceException:
             self.wait_for_ready_state_complete(driver)
-            time.sleep(0.06)
+            time.sleep(0.5)
             element = self.element_appear(driver, locate_type, locator_expression, timeout)
             element.click()
         except Exception as e:
@@ -178,3 +178,7 @@ class ObjectMap:
             print("等待元素消失或出现失败", e)
             return False
         return True
+
+    def upload(self,driver,locate_type, locator_expression, file_path):
+        element=self.element_get(driver,locate_type,locator_expression)
+        return element.send_keys(file_path)
