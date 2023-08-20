@@ -18,5 +18,10 @@ def sep(path, add_sep_before=False, add_sep_after=False):  # 给路径添加分�
     return all_path
 
 
+def get_img_path(img_name):
+    img_path = get_project_path() + sep(["img", img_name], add_sep_before=True)
+    return img_path
+
+
 if __name__ == '__main__':
-    print(sep(["config", "environment.yaml"], add_sep_after=True, add_sep_before=True))
+    print(get_img_path("商品图品一.jpg"))
