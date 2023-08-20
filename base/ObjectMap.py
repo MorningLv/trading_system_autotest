@@ -182,3 +182,7 @@ class ObjectMap:
     def upload(self,driver,locate_type, locator_expression, file_path):
         element=self.element_get(driver,locate_type,locator_expression)
         return element.send_keys(file_path)
+
+    def switch_win_to_lastest_handle(self,driver):
+        window_handles=driver.window_handles
+        driver.switch_to.window(window_handles[-1])
