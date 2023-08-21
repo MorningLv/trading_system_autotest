@@ -186,3 +186,10 @@ class ObjectMap:
     def switch_win_to_lastest_handle(self,driver):
         window_handles=driver.window_handles
         driver.switch_to.window(window_handles[-1])
+
+    def switch_into_iframe(self,dirver,locate_iframe_type,locator_iframe_expression):
+        iframe=self.element_get(dirver,locate_iframe_type,locator_iframe_expression)
+        dirver.switch_to.frame(iframe)
+
+    def switch_from_ifame_to_content(self,driver):
+        driver.switch_to.parent_frame()
