@@ -26,3 +26,8 @@ class LoginPage(LoginBase, ObjectMap):
         self.login_input_value(driver, "用户名", username)
         self.login_input_value(driver, "密码", password)
         self.click_login(driver, "登录")
+        self.assert_login_success(driver)
+
+    def assert_login_success(self, driver):
+        success_xpath = self.login_success()
+        self.element_appear(driver, By.XPATH, success_xpath, timeout=2)

@@ -11,7 +11,6 @@ from common.report_add_img import add_img_2_report
 
 
 class TestWindowHandle:
-    @allure.description("窗口句柄")
     def test_switch_window_handles(self, driver):
         with allure.step("登录"):
             LoginPage().login(driver, "jay")
