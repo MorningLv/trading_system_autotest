@@ -2,7 +2,6 @@
 # @Author: LCC
 from time import sleep
 
-from config.driver_config import DriverConfig
 from pages.LoginPage import LoginPage
 from pages.LeftMenuPage import LeftMenuPage
 
@@ -10,8 +9,7 @@ from pages.IframeBaiduMapPage import IframeBaiduMapPage
 
 
 class TestIframeBaiduMap:
-    def test_iframe_baidu_map(self):
-        driver = DriverConfig().driver_config()
+    def test_iframe_baidu_map(self, driver):
         LoginPage().login(driver, "jay")
         LeftMenuPage().click_level_one_menu(driver, "iframe测试")
         sleep(1)
@@ -22,4 +20,3 @@ class TestIframeBaiduMap:
         LeftMenuPage().click_level_one_menu(driver, "首页")
 
         sleep(3)
-        driver.quit()

@@ -2,15 +2,13 @@
 # @Author: LCC
 from time import sleep
 
-from config.driver_config import DriverConfig
 from pages.LoginPage import LoginPage
 from pages.LeftMenuPage import LeftMenuPage
 from pages.GoodsPage import GoodsPage
 
 
 class TestAddGoods:
-    def test_add_goods_001(self):
-        driver = DriverConfig().driver_config()
+    def test_add_goods_001(self, driver):
         LoginPage().login(driver, "jay")
         LeftMenuPage().click_level_one_menu(driver, "产品")
         sleep(1)
@@ -27,4 +25,3 @@ class TestAddGoods:
             button_name="提交"
         )
         sleep(3)
-        driver.quit()
