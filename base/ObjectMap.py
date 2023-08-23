@@ -193,3 +193,8 @@ class ObjectMap:
 
     def switch_from_ifame_to_content(self, driver):
         driver.switch_to.parent_frame()
+
+    def scroll_to_element(self, driver, locate_type, locator_expression):
+        ele = self.element_get(driver, locate_type, locator_expression)
+        driver.execute_script("arguments[0].scrollIntoView()", ele)
+        return True
