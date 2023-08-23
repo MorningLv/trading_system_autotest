@@ -37,3 +37,13 @@ class OrderPage(OrderBase, ObjectMap):
         log.info("填写物流单号")
         input_xpath = self.logistics_order_no()
         return self.element_fill_value(driver, By.XPATH, input_xpath, order_no)
+
+    def click_evaluation(self, driver, num):
+        log.info("评价星级：" + str(num) + "星")
+        star_xpath = self.evaluation(num)
+        return self.element_click(driver, By.XPATH, star_xpath)
+
+    def click_evaluation_confirm(self, driver):
+        log.info("评价后点击确定")
+        button_xpath = self.evaluation_confirm()
+        return self.element_click(driver, By.XPATH, button_xpath)

@@ -23,7 +23,7 @@ def get_log(logger_name):
     all_log_name = all_log_path + rq + ".log"
     # 创建Handler
     # 创建Handler写入日志
-    fh = logging.FileHandler(all_log_name)
+    fh = logging.FileHandler(all_log_name, encoding='utf-8')
     fh.setLevel(logging.INFO)
     # 定义日志内容输出格式
     all_log_formatter = logging.Formatter(
