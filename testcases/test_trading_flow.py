@@ -10,6 +10,7 @@ from common.tools import get_now_date_time_str
 from pages.GoodsPage import GoodsPage
 from pages.LoginPage import LoginPage
 from pages.LeftMenuPage import LeftMenuPage
+from pages.TradingMarketPage import TradingMarketPage
 
 
 class TestTradingFlow:
@@ -38,3 +39,38 @@ class TestTradingFlow:
             )
             add_img_2_report(driver, "新增商品")
             sleep(3)
+
+        with allure.step("登录买家"):
+            LoginPage().api_login(driver,"william")
+            add_img_2_report(driver,"登录买家")
+
+        with allure.step("进入交易市场"):
+            LeftMenuPage().click_level_one_menu(driver,"交易市场")
+            add_img_2_report(driver,"进入交易市场")
+
+        with allure.step("搜索宝贝"):
+            TradingMarketPage().input_search_input(driver,goods_title)
+            TradingMarketPage().click_search(driver)
+            add_img_2_report(driver,"搜索宝贝")
+
+        with allure.step("点击商品卡片"):
+            TradingMarketPage().click_product_card(driver,goods_title)
+            sleep(1)
+            add_img_2_report(driver,"点击商品卡片")
+
+        with allure.step("点击我想要"):
+            TradingMarketPage().click_i_want(driver)
+            sleep(1)
+            add_img_2_report(driver,"点击我想要")
+
+        with allure.step("选择详细收获地址"):
+            TradingMarketPage().click_address(driver)
+            sleep(1)
+            TradingMarketPage().select_detail_address(driver,1)
+            sleep(1)
+            add_img_2_report(driver,"选择第1个收获地址")
+
+        with allure.step("点击确定按钮"):
+            TradingMarketPage().click_bottom_buttom(driver)
+            sleep(1)
+            add_img_2_report(driver,"点击确定按钮")
