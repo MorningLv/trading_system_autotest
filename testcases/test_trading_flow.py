@@ -105,3 +105,20 @@ class TestTradingFlow:
             OrderPage().click_order_operation_confirm(driver)
             add_img_2_report(driver, "卖家发货")
             sleep(3)
+
+        with allure.step("登录买家"):
+            LoginPage().api_login(driver, "william")
+            add_img_2_report(driver, "登录买家")
+
+        with allure.step("进入已买到的宝贝"):
+            LeftMenuPage().click_level_one_menu(driver, "我的订单")
+            sleep(1)
+            LeftMenuPage().click_level_two_menu(driver, "已买到的宝贝")
+            sleep(2)
+            add_img_2_report(driver, "进入已买到的宝贝")
+
+        with allure.step("买家确认收获"):
+            OrderPage().click_order_operation(driver, goods_title, "去确认收货")
+            sleep(1)
+            OrderPage().click_order_operation_confirm(driver)
+            add_img_2_report(driver, "买家确认收获")
