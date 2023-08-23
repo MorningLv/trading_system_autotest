@@ -11,6 +11,7 @@ from pages.GoodsPage import GoodsPage
 from pages.LoginPage import LoginPage
 from pages.LeftMenuPage import LeftMenuPage
 from pages.TradingMarketPage import TradingMarketPage
+from pages.OrderPage import OrderPage
 
 
 class TestTradingFlow:
@@ -41,36 +42,42 @@ class TestTradingFlow:
             sleep(3)
 
         with allure.step("登录买家"):
-            LoginPage().api_login(driver,"william")
-            add_img_2_report(driver,"登录买家")
+            LoginPage().api_login(driver, "william")
+            add_img_2_report(driver, "登录买家")
 
         with allure.step("进入交易市场"):
-            LeftMenuPage().click_level_one_menu(driver,"交易市场")
-            add_img_2_report(driver,"进入交易市场")
+            LeftMenuPage().click_level_one_menu(driver, "交易市场")
+            add_img_2_report(driver, "进入交易市场")
 
         with allure.step("搜索宝贝"):
-            TradingMarketPage().input_search_input(driver,goods_title)
+            TradingMarketPage().input_search_input(driver, goods_title)
             TradingMarketPage().click_search(driver)
-            add_img_2_report(driver,"搜索宝贝")
+            add_img_2_report(driver, "搜索宝贝")
 
         with allure.step("点击商品卡片"):
-            TradingMarketPage().click_product_card(driver,goods_title)
+            TradingMarketPage().click_product_card(driver, goods_title)
             sleep(1)
-            add_img_2_report(driver,"点击商品卡片")
+            add_img_2_report(driver, "点击商品卡片")
 
         with allure.step("点击我想要"):
             TradingMarketPage().click_i_want(driver)
             sleep(1)
-            add_img_2_report(driver,"点击我想要")
+            add_img_2_report(driver, "点击我想要")
 
         with allure.step("选择详细收获地址"):
             TradingMarketPage().click_address(driver)
             sleep(1)
-            TradingMarketPage().select_detail_address(driver,1)
+            TradingMarketPage().select_detail_address(driver, 1)
             sleep(1)
-            add_img_2_report(driver,"选择第1个收获地址")
+            add_img_2_report(driver, "选择第1个收获地址")
 
         with allure.step("点击确定按钮"):
             TradingMarketPage().click_bottom_buttom(driver)
             sleep(1)
-            add_img_2_report(driver,"点击确定按钮")
+            add_img_2_report(driver, "点击确定按钮")
+
+        with allure.step("买家支付"):
+            OrderPage().click_order_operation(driver, goods_title, "去支付")
+            sleep(1)
+            OrderPage().click_order_operation_confirm(driver)
+            add_img_2_report(driver, "买家支付")
