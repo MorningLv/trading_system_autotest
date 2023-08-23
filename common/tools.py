@@ -1,6 +1,7 @@
 # @Time: 2023/8/18 15:22
 # @Author: LCC
 import os
+import time
 
 
 def get_project_path():  # 获取项目绝对路径
@@ -23,5 +24,9 @@ def get_img_path(img_name):
     return img_path
 
 
+def get_now_date_time_str():
+    return time.strftime("%Y%m%d%H%M%S", time.localtime(time.time()))
+
+
 if __name__ == '__main__':
-    print(get_img_path("商品图品一.jpg"))
+    print(get_now_date_time_str())
