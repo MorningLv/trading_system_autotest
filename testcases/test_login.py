@@ -20,9 +20,9 @@ class TestLogin:
         # LoginPage().click_login(driver, "登录")
         sleep(3)
 
-    @pytest.mark.login
-    @allure.feature("登录")
-    @allure.description("登录")
+    @pytest.mark.test
+    @allure.feature("登录feature")
+    @allure.description("登录description")
     def test_login_fail(self, driver):
         """使用错误的账号登录"""
         with allure.step("登录"):
