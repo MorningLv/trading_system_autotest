@@ -10,6 +10,10 @@
 .idea/**/Project.xml
 .idea/vcs.xml
 .idea/misc.xml
+.idea/encodings.xml
+logs/
+driver_files/
+img/
 
 # AWS User-specific
 .idea/**/aws.xml

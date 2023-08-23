@@ -23,3 +23,6 @@ class HomeBase:
         # 方式一 ：//span[starts-with(text(),'欢迎您回来')]/parent::div/preceding-sibling::div//img
         # 方式二 ：//span[text()='我的地址']/ancestor::div[@class='first_card']/div[contains(@class,'user_avatar')]//img
         return "//span[starts-with(text(),'欢迎您回来')]/parent::div/preceding-sibling::div//img"
+
+    def user_balance(self):
+        return "//th[text()='账户余额']/parent::tr/following-sibling::tr/td[1]"

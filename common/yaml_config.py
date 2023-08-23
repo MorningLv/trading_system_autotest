@@ -16,6 +16,9 @@ class GetConf:
     def get_url(self):
         return self.env["url"]
 
+    def get_mysql_config(self):
+        return self.env["mysql"]
+
 
 if __name__ == '__main__':
-    print(GetConf().get_username_password("jay"))
+    print(GetConf().get_mysql_config())
