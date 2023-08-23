@@ -81,3 +81,27 @@ class TestTradingFlow:
             sleep(1)
             OrderPage().click_order_operation_confirm(driver)
             add_img_2_report(driver, "买家支付")
+
+        with allure.step("登录卖家"):
+            LoginPage().api_login(driver, "jay")
+            add_img_2_report(driver, "登录卖家")
+
+        with allure.step("进入已卖出的宝贝"):
+            LeftMenuPage().click_level_one_menu(driver, "我的订单")
+            sleep(1)
+            LeftMenuPage().click_level_two_menu(driver, "已卖出的宝贝")
+            sleep(2)
+            add_img_2_report(driver, "进入已卖出的宝贝")
+
+        with allure.step("卖家发货"):
+            OrderPage().click_order_operation(driver, goods_title, "去发货")
+            sleep(1)
+            OrderPage().click_delivery_logistics(driver)
+            sleep(1)
+            OrderPage().click_select_logistitcs(driver, "顺丰速运")
+            sleep(1)
+            OrderPage().input_logistics_order_no(driver, "123456789")
+            sleep(1)
+            OrderPage().click_order_operation_confirm(driver)
+            add_img_2_report(driver, "卖家发货")
+            sleep(3)

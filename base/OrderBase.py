@@ -10,3 +10,12 @@ class OrderBase:
 
     def order_operation_confirm(self):
         return "//div[@class='el-dialog__wrapper' and contains(@style,'index')]//span[text()='确定']/parent::button"
+
+    def delivery_logistics(self):
+        return "//label[text()='物流公司']/following-sibling::div//input"
+
+    def select_logistics(self, company):
+        return "//span[text()='" + company + "']/parent::li"
+
+    def logistics_order_no(self):
+        return "//label[text()='物流单号']/following-sibling::div//input"
