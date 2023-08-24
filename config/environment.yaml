@@ -13,6 +13,11 @@ url: http://110.41.4.36
 
 mysql:
   db: trading_system
-  host: 192.168.2.191
+  host: 172.27.73.252
   password: william
   port: 3306
+
+redis:
+  host: 172.27.73.252
+  port: 6379
+  db: 0

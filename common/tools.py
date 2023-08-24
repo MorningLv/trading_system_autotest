@@ -28,5 +28,9 @@ def get_now_date_time_str():
     return time.strftime("%Y%m%d%H%M%S", time.localtime(time.time()))
 
 
+def get_now_time():
+    return time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(time.time()))
+
+
 if __name__ == '__main__':
-    print(get_now_date_time_str())
+    print(get_now_time())

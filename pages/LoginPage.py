@@ -54,7 +54,6 @@ class LoginPage(LoginBase, ObjectMap):
         log.info("跳转主页")
         self.element_to_url(driver, "/")
 
-
-def assert_login_success(self, driver):
-    success_xpath = self.login_success()
-    self.element_appear(driver, By.XPATH, success_xpath, timeout=2)
+    def assert_login_success(self, driver):
+        success_xpath = self.login_success()
+        self.element_appear(driver, By.XPATH, success_xpath, timeout=2)

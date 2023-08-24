@@ -4,6 +4,13 @@ import pytest
 
 from config.driver_config import DriverConfig
 from common.report_add_img import add_img_2_report
+from common.process_redis import Process
+
+
+def pytest_collection_finish(session):
+    total = len(session.items)
+    Process().reset_all()
+    Process().init_process(total)
 
 
 @pytest.fixture()
@@ -25,3 +32,14 @@ def pytest_runtest_makereport(item, call):
     if report.when == "call":
         if report.failed:
             add_img_2_report(get_driver, "失败截图", need_sleep=False)
+
+            Process().update_fail()
+            Process().insert_into_fail_testcase_names(report.description)
+
+        elif report.passed:
+            Process().update_success()
+
+        else:
+            pass
+        process = Process().get_process()
+        print(process)

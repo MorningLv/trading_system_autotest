@@ -15,9 +15,10 @@ from pages.OrderPage import OrderPage
 
 goods_title = ""
 
+
 @pytest.mark.test_trading
 class TestTradingFlow:
-    def test_trading_flow(self,driver):
+    def test_trading_flow(self, driver):
         with allure.step("登录卖家"):
             LoginPage().api_login(driver, "jay")
             add_img_2_report(driver, "登录卖家")
@@ -130,6 +131,7 @@ class TestTradingFlow:
             sleep(2)
             OrderPage().click_evaluation_confirm(driver)
             add_img_2_report(driver, "买家评价")
+
 
 class TestTradingFlow2:
 
