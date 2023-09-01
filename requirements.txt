@@ -1,0 +1,7 @@
+allure_python_commons==2.13.2
+PyMySQL==1.0.2
+pytest==7.0.1
+PyYAML==6.0.1
+redis==4.3.6
+requests==2.20.0
+selenium==3.141.0
